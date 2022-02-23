@@ -6,13 +6,14 @@ def validation(userinput):
             print("Only whole numbers are permitted!")              # If a different data type is input instead,                           
             print("Please try again.")                              # the code loops back and waits for a new input
             continue                                                
-        if userinput == 0 or userinput == 1 or userinput == -1:     # Special considerations that exclude forbidden values
+        if userinput == 0 or userinput == 1:                        # Special considerations that exclude forbidden values
             print("0 and 1 are neither prime nor composite!")       
             print("Please try again.")                              # If either condition is met, the code
             continue                                                # loops back and waits for a new input
         elif userinput < 0:                                         
-            userinput = userinput * -1                              # Excludes negative values outside factor_list range
-            return userinput
+            print("Negative numbers are not considered prime.")     # Excludes negative values outside factor_list range
+            print("Please try again.")
+            continue
         else:                                                       # Breaks out of loop if validation conditions are met
             return userinput
 
@@ -21,7 +22,7 @@ def prime_check(userinput):
     for divisor in range(1, userinput):                             # 1 is always added as the second factor
         if userinput % divisor == 0:                                # Each divisor that leaves no remainder is added to list
             factor_list.append(divisor)
-        if divisor == 0.5 * userinput:                              # All quotients above half the user input will be between
+        if divisor >= 0.5 * userinput:                              # All quotients above half the user input will be between
             break                                                   # 1 and 2 so there is no reason to continue the loop
     if len(factor_list) == 2:                                       # Checks if any factors are found besides 1 and userinput
         print("This number is prime!")
